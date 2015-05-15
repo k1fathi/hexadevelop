@@ -1,0 +1,14 @@
+@font-face {
+    font-family: "Yekan";
+    font-style: normal;
+    font-weight: normal;
+    src: url("/fonts/Web Font Farsi/WebYekan/fonts/yekanweb-regular.eot") format("embedded-opentype"), url("/fonts/Web Font Farsi/WebYekan/fonts/yekanweb-regular.woff") format("woff"), url("/fonts/Web Font Farsi/WebYekan/fonts/yekanweb-regular.ttf") format("truetype"), url("/fonts/Web Font Farsi/WebYekan/fonts/yekanweb-regular.svg") format("svg");
+}
+	@font-face {
+	    font-family: 'wwww';
+	     src: url('/fonts/Web Font Farsi/Farsi WebFont Pack/IranianSerifWeb-Regular.woff') format('woff');
+	
+	}
+*,h2{
+    font-family: wwww;
+}
