@@ -184,3 +184,20 @@ F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\obj\Debug\HackaGlobal.c
 F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\obj\Debug\HackaGlobal.dll
 F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\obj\Debug\HackaGlobal.pdb
 >>>>>>> origin/master
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\Microsoft.Practices.ServiceLocation.dll
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\StructureMap.dll
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\StructureMap.Net4.dll
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\StructureMap.Web.dll
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\WebActivatorEx.dll
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\Microsoft.Practices.ServiceLocation.pdb
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\Microsoft.Practices.ServiceLocation.xml
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\StructureMap.pdb
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\StructureMap.xml
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\StructureMap.Net4.pdb
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\StructureMap.Web.pdb
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\StructureMap.Web.xml
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\Microsoft.Practices.Unity.Configuration.dll
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\Microsoft.Practices.Unity.dll
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\UnityDependencyResolver.Lib.dll
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\Microsoft.Practices.Unity.xml
+F:\Hacka\hexadevelop\SamsamHacka\HackaGlobal\HackaGlobal\bin\Microsoft.Practices.Unity.Configuration.xml

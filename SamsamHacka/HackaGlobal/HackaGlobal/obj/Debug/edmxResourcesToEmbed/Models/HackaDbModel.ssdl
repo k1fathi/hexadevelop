@@ -1,0 +1,562 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Cities">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="DomainName" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CityOrganizers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="CitySponsors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="SponsorName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SponsorWebsite" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Picture" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Sort" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="EventComments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="AnswerToCommentId" Type="int" />
+    <Property Name="Text" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="IsConfirmed" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventLikes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="IsLike" Type="bit" Nullable="false" />
+    <Property Name="LikeDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="EventMembers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventId" Type="int" Nullable="false" />
+    <Property Name="TeamId" Type="int" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="RegisterDate" Type="datetime" Nullable="false" />
+    <Property Name="WinRank" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Events">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="CreaterUserId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Summary" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" />
+    <Property Name="Address" Type="nvarchar" MaxLength="500" />
+    <Property Name="XMapPath" Type="float" />
+    <Property Name="YMapPath" Type="float" />
+    <Property Name="CreateDate" Type="date" Nullable="false" />
+    <Property Name="EventDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EventSponsors">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventId" Type="int" Nullable="false" />
+    <Property Name="SponsorName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="SponsorWebsite" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Picture" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Sort" Type="tinyint" />
+  </EntityType>
+  <EntityType Name="Gallery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventId" Type="int" />
+    <Property Name="PicturePath" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EventId" Type="int" />
+    <Property Name="WriterUserId" Type="int" Nullable="false" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="Text" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Picture" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="WriteDate" Type="datetime" Nullable="false" />
+    <Property Name="KeywordsTag" Type="nvarchar" MaxLength="200" />
+    <Property Name="DescriptionTag" Type="nvarchar" MaxLength="300" />
+    <Property Name="Url" Type="nvarchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="NewsComments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NewsId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" />
+    <Property Name="AnswerToCommentId" Type="int" />
+    <Property Name="Text" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="IsConfirmed" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ContactUsPageText" Type="nvarchar(max)" />
+    <Property Name="AboutUsPageText" Type="nvarchar(max)" />
+    <Property Name="WebsiteTitle" Type="nvarchar" MaxLength="200" />
+    <Property Name="WebsiteFooter" Type="nvarchar" MaxLength="200" />
+    <Property Name="SmtpEmailServer" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar" MaxLength="50" />
+    <Property Name="EmailPassword" Type="varchar" MaxLength="50" />
+    <Property Name="EmailSenderName" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Teams">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CityId" Type="int" Nullable="false" />
+    <Property Name="TeamName" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TeamUsers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TeamId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="Position" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FullName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RegisterDate" Type="datetime" Nullable="false" />
+    <Property Name="Mobile" Type="nvarchar" MaxLength="50" />
+    <Property Name="Gender" Type="bit" />
+    <Property Name="Picture" Type="nvarchar" MaxLength="200" />
+    <Property Name="Type" Type="tinyint" Nullable="false" />
+    <Property Name="Twitter" Type="varchar" MaxLength="50" />
+    <Property Name="Facebook" Type="varchar" MaxLength="50" />
+    <Property Name="Github" Type="nchar" MaxLength="10" />
+  </EntityType>
+  <Association Name="FK_CityOrganizers_Cities">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+    <End Role="CityOrganizers" Type="Self.CityOrganizers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CityOrganizers">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CitySponsors_Cities">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+    <End Role="CitySponsors" Type="Self.CitySponsors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CitySponsors">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventComments_EventComments">
+    <End Role="EventComments" Type="Self.EventComments" Multiplicity="0..1" />
+    <End Role="EventComments1" Type="Self.EventComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventComments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventComments1">
+        <PropertyRef Name="AnswerToCommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventComments_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="1" />
+    <End Role="EventComments" Type="Self.EventComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventComments">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventComments_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="EventComments" Type="Self.EventComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventComments">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventLikes_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="1" />
+    <End Role="EventLikes" Type="Self.EventLikes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventLikes">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventLikes_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="EventLikes" Type="Self.EventLikes" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventLikes">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventOrganizers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="CityOrganizers" Type="Self.CityOrganizers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CityOrganizers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_Cities">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+    <End Role="Events" Type="Self.Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Events">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="Events" Type="Self.Events" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Events">
+        <PropertyRef Name="CreaterUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventSponsors_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="1" />
+    <End Role="EventSponsors" Type="Self.EventSponsors" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventSponsors">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventTeams_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="1" />
+    <End Role="EventMembers" Type="Self.EventMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventMembers">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventTeams_Teams">
+    <End Role="Teams" Type="Self.Teams" Multiplicity="0..1" />
+    <End Role="EventMembers" Type="Self.EventMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventMembers">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventUsersTeams_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="EventMembers" Type="Self.EventMembers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventMembers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gallery_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+    <End Role="Gallery" Type="Self.Gallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gallery">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Events">
+    <End Role="Events" Type="Self.Events" Multiplicity="0..1" />
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="WriterUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsComments_News">
+    <End Role="News" Type="Self.News" Multiplicity="1" />
+    <End Role="NewsComments" Type="Self.NewsComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NewsComments">
+        <PropertyRef Name="NewsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsComments_NewsComments">
+    <End Role="NewsComments" Type="Self.NewsComments" Multiplicity="0..1" />
+    <End Role="NewsComments1" Type="Self.NewsComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsComments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NewsComments1">
+        <PropertyRef Name="AnswerToCommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsComments_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+    <End Role="NewsComments" Type="Self.NewsComments" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NewsComments">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teams_Cities">
+    <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
+    <End Role="Teams" Type="Self.Teams" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Teams">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamUsers_Teams">
+    <End Role="Teams" Type="Self.Teams" Multiplicity="1" />
+    <End Role="TeamUsers" Type="Self.TeamUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TeamUsers">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamUsers_Users">
+    <End Role="Users" Type="Self.Users" Multiplicity="1" />
+    <End Role="TeamUsers" Type="Self.TeamUsers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TeamUsers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ModelStoreContainer">
+    <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CityOrganizers" EntityType="Self.CityOrganizers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CitySponsors" EntityType="Self.CitySponsors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventComments" EntityType="Self.EventComments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventLikes" EntityType="Self.EventLikes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventMembers" EntityType="Self.EventMembers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Events" EntityType="Self.Events" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EventSponsors" EntityType="Self.EventSponsors" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Gallery" EntityType="Self.Gallery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="News" EntityType="Self.News" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="NewsComments" EntityType="Self.NewsComments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Setting" EntityType="Self.Setting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Teams" EntityType="Self.Teams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TeamUsers" EntityType="Self.TeamUsers" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_CityOrganizers_Cities" Association="Self.FK_CityOrganizers_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="CityOrganizers" EntitySet="CityOrganizers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CitySponsors_Cities" Association="Self.FK_CitySponsors_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="CitySponsors" EntitySet="CitySponsors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventComments_EventComments" Association="Self.FK_EventComments_EventComments">
+      <End Role="EventComments" EntitySet="EventComments" />
+      <End Role="EventComments1" EntitySet="EventComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventComments_Events" Association="Self.FK_EventComments_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="EventComments" EntitySet="EventComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventComments_Users" Association="Self.FK_EventComments_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="EventComments" EntitySet="EventComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventLikes_Events" Association="Self.FK_EventLikes_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="EventLikes" EntitySet="EventLikes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventLikes_Users" Association="Self.FK_EventLikes_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="EventLikes" EntitySet="EventLikes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventOrganizers_Users" Association="Self.FK_EventOrganizers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CityOrganizers" EntitySet="CityOrganizers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_Cities" Association="Self.FK_Events_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Events" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_Users" Association="Self.FK_Events_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Events" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventSponsors_Events" Association="Self.FK_EventSponsors_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="EventSponsors" EntitySet="EventSponsors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventTeams_Events" Association="Self.FK_EventTeams_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="EventMembers" EntitySet="EventMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventTeams_Teams" Association="Self.FK_EventTeams_Teams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="EventMembers" EntitySet="EventMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventUsersTeams_Users" Association="Self.FK_EventUsersTeams_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="EventMembers" EntitySet="EventMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gallery_Events" Association="Self.FK_Gallery_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="Gallery" EntitySet="Gallery" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Events" Association="Self.FK_News_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Users" Association="Self.FK_News_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsComments_News" Association="Self.FK_NewsComments_News">
+      <End Role="News" EntitySet="News" />
+      <End Role="NewsComments" EntitySet="NewsComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsComments_NewsComments" Association="Self.FK_NewsComments_NewsComments">
+      <End Role="NewsComments" EntitySet="NewsComments" />
+      <End Role="NewsComments1" EntitySet="NewsComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsComments_Users" Association="Self.FK_NewsComments_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NewsComments" EntitySet="NewsComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teams_Cities" Association="Self.FK_Teams_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Teams" EntitySet="Teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamUsers_Teams" Association="Self.FK_TeamUsers_Teams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="TeamUsers" EntitySet="TeamUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamUsers_Users" Association="Self.FK_TeamUsers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TeamUsers" EntitySet="TeamUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

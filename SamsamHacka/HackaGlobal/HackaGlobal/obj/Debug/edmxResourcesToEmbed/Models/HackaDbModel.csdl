@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DomainName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="CityOrganizers" Relationship="Self.FK_CityOrganizers_Cities" FromRole="Cities" ToRole="CityOrganizers" />
+    <NavigationProperty Name="CitySponsors" Relationship="Self.FK_CitySponsors_Cities" FromRole="Cities" ToRole="CitySponsors" />
+    <NavigationProperty Name="Events" Relationship="Self.FK_Events_Cities" FromRole="Cities" ToRole="Events" />
+    <NavigationProperty Name="Teams" Relationship="Self.FK_Teams_Cities" FromRole="Cities" ToRole="Teams" />
+  </EntityType>
+  <EntityType Name="CityOrganizer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="City" Relationship="Self.FK_CityOrganizers_Cities" FromRole="CityOrganizers" ToRole="Cities" />
+    <NavigationProperty Name="User" Relationship="Self.FK_EventOrganizers_Users" FromRole="CityOrganizers" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="CitySponsor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="SponsorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SponsorWebsite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sort" Type="Byte" />
+    <NavigationProperty Name="City" Relationship="Self.FK_CitySponsors_Cities" FromRole="CitySponsors" ToRole="Cities" />
+  </EntityType>
+  <EntityType Name="EventComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="AnswerToCommentId" Type="Int32" />
+    <Property Name="Text" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="EventComments1" Relationship="Self.FK_EventComments_EventComments" FromRole="EventComments" ToRole="EventComments1" />
+    <NavigationProperty Name="EventComment1" Relationship="Self.FK_EventComments_EventComments" FromRole="EventComments1" ToRole="EventComments" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_EventComments_Events" FromRole="EventComments" ToRole="Events" />
+    <NavigationProperty Name="User" Relationship="Self.FK_EventComments_Users" FromRole="EventComments" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="EventLike">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="IsLike" Type="Boolean" Nullable="false" />
+    <Property Name="LikeDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_EventLikes_Events" FromRole="EventLikes" ToRole="Events" />
+    <NavigationProperty Name="User" Relationship="Self.FK_EventLikes_Users" FromRole="EventLikes" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="EventMember">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" Nullable="false" />
+    <Property Name="TeamId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="WinRank" Type="Byte" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_EventTeams_Events" FromRole="EventMembers" ToRole="Events" />
+    <NavigationProperty Name="Team" Relationship="Self.FK_EventTeams_Teams" FromRole="EventMembers" ToRole="Teams" />
+    <NavigationProperty Name="User" Relationship="Self.FK_EventUsersTeams_Users" FromRole="EventMembers" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="CreaterUserId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Summary" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="XMapPath" Type="Double" />
+    <Property Name="YMapPath" Type="Double" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="City" Relationship="Self.FK_Events_Cities" FromRole="Events" ToRole="Cities" />
+    <NavigationProperty Name="EventComments" Relationship="Self.FK_EventComments_Events" FromRole="Events" ToRole="EventComments" />
+    <NavigationProperty Name="EventLikes" Relationship="Self.FK_EventLikes_Events" FromRole="Events" ToRole="EventLikes" />
+    <NavigationProperty Name="EventMembers" Relationship="Self.FK_EventTeams_Events" FromRole="Events" ToRole="EventMembers" />
+    <NavigationProperty Name="User" Relationship="Self.FK_Events_Users" FromRole="Events" ToRole="Users" />
+    <NavigationProperty Name="EventSponsors" Relationship="Self.FK_EventSponsors_Events" FromRole="Events" ToRole="EventSponsors" />
+    <NavigationProperty Name="Galleries" Relationship="Self.FK_Gallery_Events" FromRole="Events" ToRole="Gallery" />
+    <NavigationProperty Name="News" Relationship="Self.FK_News_Events" FromRole="Events" ToRole="News" />
+  </EntityType>
+  <EntityType Name="EventSponsor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" Nullable="false" />
+    <Property Name="SponsorName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SponsorWebsite" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Sort" Type="Byte" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_EventSponsors_Events" FromRole="EventSponsors" ToRole="Events" />
+  </EntityType>
+  <EntityType Name="Gallery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" />
+    <Property Name="PicturePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_Gallery_Events" FromRole="Gallery" ToRole="Events" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" />
+    <Property Name="WriterUserId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WriteDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="KeywordsTag" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DescriptionTag" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Url" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Event" Relationship="Self.FK_News_Events" FromRole="News" ToRole="Events" />
+    <NavigationProperty Name="User" Relationship="Self.FK_News_Users" FromRole="News" ToRole="Users" />
+    <NavigationProperty Name="NewsComments" Relationship="Self.FK_NewsComments_News" FromRole="News" ToRole="NewsComments" />
+  </EntityType>
+  <EntityType Name="NewsComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NewsId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="AnswerToCommentId" Type="Int32" />
+    <Property Name="Text" Type="String" MaxLength="500" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="News" Relationship="Self.FK_NewsComments_News" FromRole="NewsComments" ToRole="News" />
+    <NavigationProperty Name="NewsComments1" Relationship="Self.FK_NewsComments_NewsComments" FromRole="NewsComments" ToRole="NewsComments1" />
+    <NavigationProperty Name="NewsComment1" Relationship="Self.FK_NewsComments_NewsComments" FromRole="NewsComments1" ToRole="NewsComments" />
+    <NavigationProperty Name="User" Relationship="Self.FK_NewsComments_Users" FromRole="NewsComments" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContactUsPageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AboutUsPageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WebsiteTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="WebsiteFooter" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SmtpEmailServer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailSenderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="City" Relationship="Self.FK_Teams_Cities" FromRole="Teams" ToRole="Cities" />
+    <NavigationProperty Name="EventMembers" Relationship="Self.FK_EventTeams_Teams" FromRole="Teams" ToRole="EventMembers" />
+    <NavigationProperty Name="TeamUsers" Relationship="Self.FK_TeamUsers_Teams" FromRole="Teams" ToRole="TeamUsers" />
+  </EntityType>
+  <EntityType Name="TeamUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Team" Relationship="Self.FK_TeamUsers_Teams" FromRole="TeamUsers" ToRole="Teams" />
+    <NavigationProperty Name="User" Relationship="Self.FK_TeamUsers_Users" FromRole="TeamUsers" ToRole="Users" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Byte" Nullable="false" />
+    <Property Name="Twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Github" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="CityOrganizers" Relationship="Self.FK_EventOrganizers_Users" FromRole="Users" ToRole="CityOrganizers" />
+    <NavigationProperty Name="EventComments" Relationship="Self.FK_EventComments_Users" FromRole="Users" ToRole="EventComments" />
+    <NavigationProperty Name="EventLikes" Relationship="Self.FK_EventLikes_Users" FromRole="Users" ToRole="EventLikes" />
+    <NavigationProperty Name="EventMembers" Relationship="Self.FK_EventUsersTeams_Users" FromRole="Users" ToRole="EventMembers" />
+    <NavigationProperty Name="Events" Relationship="Self.FK_Events_Users" FromRole="Users" ToRole="Events" />
+    <NavigationProperty Name="News" Relationship="Self.FK_News_Users" FromRole="Users" ToRole="News" />
+    <NavigationProperty Name="NewsComments" Relationship="Self.FK_NewsComments_Users" FromRole="Users" ToRole="NewsComments" />
+    <NavigationProperty Name="TeamUsers" Relationship="Self.FK_TeamUsers_Users" FromRole="Users" ToRole="TeamUsers" />
+  </EntityType>
+  <Association Name="FK_CityOrganizers_Cities">
+    <End Role="Cities" Type="Self.City" Multiplicity="1" />
+    <End Role="CityOrganizers" Type="Self.CityOrganizer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CityOrganizers">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CitySponsors_Cities">
+    <End Role="Cities" Type="Self.City" Multiplicity="1" />
+    <End Role="CitySponsors" Type="Self.CitySponsor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CitySponsors">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_Cities">
+    <End Role="Cities" Type="Self.City" Multiplicity="1" />
+    <End Role="Events" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Events">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teams_Cities">
+    <End Role="Cities" Type="Self.City" Multiplicity="1" />
+    <End Role="Teams" Type="Self.Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cities">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Teams">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventOrganizers_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="CityOrganizers" Type="Self.CityOrganizer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CityOrganizers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventComments_EventComments">
+    <End Role="EventComments" Type="Self.EventComment" Multiplicity="0..1" />
+    <End Role="EventComments1" Type="Self.EventComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventComments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventComments1">
+        <PropertyRef Name="AnswerToCommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventComments_Events">
+    <End Role="Events" Type="Self.Event" Multiplicity="1" />
+    <End Role="EventComments" Type="Self.EventComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventComments">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventComments_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="EventComments" Type="Self.EventComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventComments">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventLikes_Events">
+    <End Role="Events" Type="Self.Event" Multiplicity="1" />
+    <End Role="EventLikes" Type="Self.EventLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventLikes">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventLikes_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="EventLikes" Type="Self.EventLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventLikes">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventTeams_Events">
+    <End Role="Events" Type="Self.Event" Multiplicity="1" />
+    <End Role="EventMembers" Type="Self.EventMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventMembers">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventTeams_Teams">
+    <End Role="Teams" Type="Self.Team" Multiplicity="0..1" />
+    <End Role="EventMembers" Type="Self.EventMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventMembers">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventUsersTeams_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="EventMembers" Type="Self.EventMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventMembers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="Events" Type="Self.Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Events">
+        <PropertyRef Name="CreaterUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventSponsors_Events">
+    <End Role="Events" Type="Self.Event" Multiplicity="1" />
+    <End Role="EventSponsors" Type="Self.EventSponsor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventSponsors">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gallery_Events">
+    <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="Gallery" Type="Self.Gallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gallery">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Events">
+    <End Role="Events" Type="Self.Event" Multiplicity="0..1" />
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Events">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="News" Type="Self.News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="WriterUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsComments_News">
+    <End Role="News" Type="Self.News" Multiplicity="1" />
+    <End Role="NewsComments" Type="Self.NewsComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NewsComments">
+        <PropertyRef Name="NewsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsComments_NewsComments">
+    <End Role="NewsComments" Type="Self.NewsComment" Multiplicity="0..1" />
+    <End Role="NewsComments1" Type="Self.NewsComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsComments">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NewsComments1">
+        <PropertyRef Name="AnswerToCommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsComments_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="0..1" />
+    <End Role="NewsComments" Type="Self.NewsComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NewsComments">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamUsers_Teams">
+    <End Role="Teams" Type="Self.Team" Multiplicity="1" />
+    <End Role="TeamUsers" Type="Self.TeamUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Teams">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TeamUsers">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamUsers_Users">
+    <End Role="Users" Type="Self.User" Multiplicity="1" />
+    <End Role="TeamUsers" Type="Self.TeamUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Users">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TeamUsers">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="HackaDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cities" EntityType="Self.City" />
+    <EntitySet Name="CityOrganizers" EntityType="Self.CityOrganizer" />
+    <EntitySet Name="CitySponsors" EntityType="Self.CitySponsor" />
+    <EntitySet Name="EventComments" EntityType="Self.EventComment" />
+    <EntitySet Name="EventLikes" EntityType="Self.EventLike" />
+    <EntitySet Name="EventMembers" EntityType="Self.EventMember" />
+    <EntitySet Name="Events" EntityType="Self.Event" />
+    <EntitySet Name="EventSponsors" EntityType="Self.EventSponsor" />
+    <EntitySet Name="Galleries" EntityType="Self.Gallery" />
+    <EntitySet Name="News" EntityType="Self.News" />
+    <EntitySet Name="NewsComments" EntityType="Self.NewsComment" />
+    <EntitySet Name="Settings" EntityType="Self.Setting" />
+    <EntitySet Name="Teams" EntityType="Self.Team" />
+    <EntitySet Name="TeamUsers" EntityType="Self.TeamUser" />
+    <EntitySet Name="Users" EntityType="Self.User" />
+    <AssociationSet Name="FK_CityOrganizers_Cities" Association="Self.FK_CityOrganizers_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="CityOrganizers" EntitySet="CityOrganizers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CitySponsors_Cities" Association="Self.FK_CitySponsors_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="CitySponsors" EntitySet="CitySponsors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_Cities" Association="Self.FK_Events_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Events" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teams_Cities" Association="Self.FK_Teams_Cities">
+      <End Role="Cities" EntitySet="Cities" />
+      <End Role="Teams" EntitySet="Teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventOrganizers_Users" Association="Self.FK_EventOrganizers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="CityOrganizers" EntitySet="CityOrganizers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventComments_EventComments" Association="Self.FK_EventComments_EventComments">
+      <End Role="EventComments" EntitySet="EventComments" />
+      <End Role="EventComments1" EntitySet="EventComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventComments_Events" Association="Self.FK_EventComments_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="EventComments" EntitySet="EventComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventComments_Users" Association="Self.FK_EventComments_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="EventComments" EntitySet="EventComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventLikes_Events" Association="Self.FK_EventLikes_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="EventLikes" EntitySet="EventLikes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventLikes_Users" Association="Self.FK_EventLikes_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="EventLikes" EntitySet="EventLikes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventTeams_Events" Association="Self.FK_EventTeams_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="EventMembers" EntitySet="EventMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventTeams_Teams" Association="Self.FK_EventTeams_Teams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="EventMembers" EntitySet="EventMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventUsersTeams_Users" Association="Self.FK_EventUsersTeams_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="EventMembers" EntitySet="EventMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_Users" Association="Self.FK_Events_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="Events" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventSponsors_Events" Association="Self.FK_EventSponsors_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="EventSponsors" EntitySet="EventSponsors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gallery_Events" Association="Self.FK_Gallery_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="Gallery" EntitySet="Galleries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Events" Association="Self.FK_News_Events">
+      <End Role="Events" EntitySet="Events" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Users" Association="Self.FK_News_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsComments_News" Association="Self.FK_NewsComments_News">
+      <End Role="News" EntitySet="News" />
+      <End Role="NewsComments" EntitySet="NewsComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsComments_NewsComments" Association="Self.FK_NewsComments_NewsComments">
+      <End Role="NewsComments" EntitySet="NewsComments" />
+      <End Role="NewsComments1" EntitySet="NewsComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsComments_Users" Association="Self.FK_NewsComments_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="NewsComments" EntitySet="NewsComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamUsers_Teams" Association="Self.FK_TeamUsers_Teams">
+      <End Role="Teams" EntitySet="Teams" />
+      <End Role="TeamUsers" EntitySet="TeamUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamUsers_Users" Association="Self.FK_TeamUsers_Users">
+      <End Role="Users" EntitySet="Users" />
+      <End Role="TeamUsers" EntitySet="TeamUsers" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

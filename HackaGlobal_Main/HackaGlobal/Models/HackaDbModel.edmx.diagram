@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="6f0c1db6d9634177943a6ccaf58a7aa0" Name="Diagram1">
+        <EntityTypeShape EntityType="HackaDbModel.City" Width="1.5" PointX="3.75" PointY="20.875" />
+        <EntityTypeShape EntityType="HackaDbModel.CityOrganizer" Width="1.5" PointX="3" PointY="14" />
+        <EntityTypeShape EntityType="HackaDbModel.CitySponsor" Width="1.5" PointX="6" PointY="23.875" />
+        <EntityTypeShape EntityType="HackaDbModel.EventComment" Width="1.5" PointX="6" PointY="9.375" />
+        <EntityTypeShape EntityType="HackaDbModel.EventLike" Width="1.5" PointX="3" PointY="10.875" />
+        <EntityTypeShape EntityType="HackaDbModel.EventMember" Width="1.5" PointX="6" PointY="13.75" />
+        <EntityTypeShape EntityType="HackaDbModel.Event" Width="1.5" PointX="6" PointY="17.75" />
+        <EntityTypeShape EntityType="HackaDbModel.EventSponsor" Width="1.5" PointX="8.25" PointY="24.5" />
+        <EntityTypeShape EntityType="HackaDbModel.Gallery" Width="1.5" PointX="8.25" PointY="21.75" />
+        <EntityTypeShape EntityType="HackaDbModel.News" Width="1.5" PointX="8.25" PointY="15.75" />
+        <EntityTypeShape EntityType="HackaDbModel.NewsComment" Width="1.5" PointX="10.5" PointY="14.25" />
+        <EntityTypeShape EntityType="HackaDbModel.Setting" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="HackaDbModel.Team" Width="1.5" PointX="3.75" PointY="7" />
+        <EntityTypeShape EntityType="HackaDbModel.TeamUser" Width="1.5" PointX="3" PointY="17" />
+        <EntityTypeShape EntityType="HackaDbModel.User" Width="1.5" PointX="0.75" PointY="12.625" />
+        <AssociationConnector Association="HackaDbModel.FK_CityOrganizers_Cities" />
+        <AssociationConnector Association="HackaDbModel.FK_CitySponsors_Cities" />
+        <AssociationConnector Association="HackaDbModel.FK_Events_Cities" />
+        <AssociationConnector Association="HackaDbModel.FK_Teams_Cities" />
+        <AssociationConnector Association="HackaDbModel.FK_EventOrganizers_Users" />
+        <AssociationConnector Association="HackaDbModel.FK_EventComments_EventComments" />
+        <AssociationConnector Association="HackaDbModel.FK_EventComments_Events" />
+        <AssociationConnector Association="HackaDbModel.FK_EventComments_Users" />
+        <AssociationConnector Association="HackaDbModel.FK_EventLikes_Events" />
+        <AssociationConnector Association="HackaDbModel.FK_EventLikes_Users" />
+        <AssociationConnector Association="HackaDbModel.FK_EventTeams_Events" />
+        <AssociationConnector Association="HackaDbModel.FK_EventTeams_Teams" />
+        <AssociationConnector Association="HackaDbModel.FK_EventUsersTeams_Users" />
+        <AssociationConnector Association="HackaDbModel.FK_Events_Users" />
+        <AssociationConnector Association="HackaDbModel.FK_EventSponsors_Events" />
+        <AssociationConnector Association="HackaDbModel.FK_Gallery_Events" />
+        <AssociationConnector Association="HackaDbModel.FK_News_Events" />
+        <AssociationConnector Association="HackaDbModel.FK_News_Users" />
+        <AssociationConnector Association="HackaDbModel.FK_NewsComments_News" />
+        <AssociationConnector Association="HackaDbModel.FK_NewsComments_NewsComments" />
+        <AssociationConnector Association="HackaDbModel.FK_NewsComments_Users" />
+        <AssociationConnector Association="HackaDbModel.FK_TeamUsers_Teams" />
+        <AssociationConnector Association="HackaDbModel.FK_TeamUsers_Users" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

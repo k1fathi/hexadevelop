@@ -1,0 +1,608 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="HackaDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="HackaDbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cities" EntityType="HackaDbModel.City" />
+    <EntitySet Name="CityOrganizers" EntityType="HackaDbModel.CityOrganizer" />
+    <EntitySet Name="CitySponsors" EntityType="HackaDbModel.CitySponsor" />
+    <EntitySet Name="EventComments" EntityType="HackaDbModel.EventComment" />
+    <EntitySet Name="EventLikes" EntityType="HackaDbModel.EventLike" />
+    <EntitySet Name="EventMembers" EntityType="HackaDbModel.EventMember" />
+    <EntitySet Name="Events" EntityType="HackaDbModel.Event" />
+    <EntitySet Name="EventSponsors" EntityType="HackaDbModel.EventSponsor" />
+    <EntitySet Name="Galleries" EntityType="HackaDbModel.Gallery" />
+    <EntitySet Name="News" EntityType="HackaDbModel.News" />
+    <EntitySet Name="NewsComments" EntityType="HackaDbModel.NewsComment" />
+    <EntitySet Name="Settings" EntityType="HackaDbModel.Setting" />
+    <EntitySet Name="Teams" EntityType="HackaDbModel.Team" />
+    <EntitySet Name="TeamUsers" EntityType="HackaDbModel.TeamUser" />
+    <EntitySet Name="Users" EntityType="HackaDbModel.User" />
+    <AssociationSet Name="FK_CityOrganizers_Cities" Association="HackaDbModel.FK_CityOrganizers_Cities">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="CityOrganizer" EntitySet="CityOrganizers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_CitySponsors_Cities" Association="HackaDbModel.FK_CitySponsors_Cities">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="CitySponsor" EntitySet="CitySponsors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_Cities" Association="HackaDbModel.FK_Events_Cities">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Teams_Cities" Association="HackaDbModel.FK_Teams_Cities">
+      <End Role="City" EntitySet="Cities" />
+      <End Role="Team" EntitySet="Teams" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventOrganizers_Users" Association="HackaDbModel.FK_EventOrganizers_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="CityOrganizer" EntitySet="CityOrganizers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventComments_EventComments" Association="HackaDbModel.FK_EventComments_EventComments">
+      <End Role="EventComment" EntitySet="EventComments" />
+      <End Role="EventComment1" EntitySet="EventComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventComments_Events" Association="HackaDbModel.FK_EventComments_Events">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="EventComment" EntitySet="EventComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventComments_Users" Association="HackaDbModel.FK_EventComments_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="EventComment" EntitySet="EventComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventLikes_Events" Association="HackaDbModel.FK_EventLikes_Events">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="EventLike" EntitySet="EventLikes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventLikes_Users" Association="HackaDbModel.FK_EventLikes_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="EventLike" EntitySet="EventLikes" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventTeams_Events" Association="HackaDbModel.FK_EventTeams_Events">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="EventMember" EntitySet="EventMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventTeams_Teams" Association="HackaDbModel.FK_EventTeams_Teams">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="EventMember" EntitySet="EventMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventUsersTeams_Users" Association="HackaDbModel.FK_EventUsersTeams_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="EventMember" EntitySet="EventMembers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Events_Users" Association="HackaDbModel.FK_Events_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="Event" EntitySet="Events" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EventSponsors_Events" Association="HackaDbModel.FK_EventSponsors_Events">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="EventSponsor" EntitySet="EventSponsors" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Gallery_Events" Association="HackaDbModel.FK_Gallery_Events">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="Gallery" EntitySet="Galleries" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Events" Association="HackaDbModel.FK_News_Events">
+      <End Role="Event" EntitySet="Events" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_News_Users" Association="HackaDbModel.FK_News_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="News" EntitySet="News" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsComments_News" Association="HackaDbModel.FK_NewsComments_News">
+      <End Role="News" EntitySet="News" />
+      <End Role="NewsComment" EntitySet="NewsComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsComments_NewsComments" Association="HackaDbModel.FK_NewsComments_NewsComments">
+      <End Role="NewsComment" EntitySet="NewsComments" />
+      <End Role="NewsComment1" EntitySet="NewsComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_NewsComments_Users" Association="HackaDbModel.FK_NewsComments_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="NewsComment" EntitySet="NewsComments" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamUsers_Teams" Association="HackaDbModel.FK_TeamUsers_Teams">
+      <End Role="Team" EntitySet="Teams" />
+      <End Role="TeamUser" EntitySet="TeamUsers" />
+    </AssociationSet>
+    <AssociationSet Name="FK_TeamUsers_Users" Association="HackaDbModel.FK_TeamUsers_Users">
+      <End Role="User" EntitySet="Users" />
+      <End Role="TeamUser" EntitySet="TeamUsers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="City">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="DomainName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="CityOrganizers" Relationship="HackaDbModel.FK_CityOrganizers_Cities" FromRole="City" ToRole="CityOrganizer" />
+    <NavigationProperty Name="CitySponsors" Relationship="HackaDbModel.FK_CitySponsors_Cities" FromRole="City" ToRole="CitySponsor" />
+    <NavigationProperty Name="Events" Relationship="HackaDbModel.FK_Events_Cities" FromRole="City" ToRole="Event" />
+    <NavigationProperty Name="Teams" Relationship="HackaDbModel.FK_Teams_Cities" FromRole="City" ToRole="Team" />
+  </EntityType>
+  <EntityType Name="CityOrganizer">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="City" Relationship="HackaDbModel.FK_CityOrganizers_Cities" FromRole="CityOrganizer" ToRole="City" />
+    <NavigationProperty Name="User" Relationship="HackaDbModel.FK_EventOrganizers_Users" FromRole="CityOrganizer" ToRole="User" />
+  </EntityType>
+  <EntityType Name="CitySponsor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="SponsorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SponsorWebsite" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Picture" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Sort" Type="Byte" />
+    <NavigationProperty Name="City" Relationship="HackaDbModel.FK_CitySponsors_Cities" FromRole="CitySponsor" ToRole="City" />
+  </EntityType>
+  <EntityType Name="EventComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="AnswerToCommentId" Type="Int32" />
+    <Property Name="Text" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="EventComments1" Relationship="HackaDbModel.FK_EventComments_EventComments" FromRole="EventComment" ToRole="EventComment1" />
+    <NavigationProperty Name="EventComment1" Relationship="HackaDbModel.FK_EventComments_EventComments" FromRole="EventComment1" ToRole="EventComment" />
+    <NavigationProperty Name="Event" Relationship="HackaDbModel.FK_EventComments_Events" FromRole="EventComment" ToRole="Event" />
+    <NavigationProperty Name="User" Relationship="HackaDbModel.FK_EventComments_Users" FromRole="EventComment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="EventLike">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="IsLike" Type="Boolean" Nullable="false" />
+    <Property Name="LikeDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Event" Relationship="HackaDbModel.FK_EventLikes_Events" FromRole="EventLike" ToRole="Event" />
+    <NavigationProperty Name="User" Relationship="HackaDbModel.FK_EventLikes_Users" FromRole="EventLike" ToRole="User" />
+  </EntityType>
+  <EntityType Name="EventMember">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" Nullable="false" />
+    <Property Name="TeamId" Type="Int32" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="WinRank" Type="Byte" />
+    <NavigationProperty Name="Event" Relationship="HackaDbModel.FK_EventTeams_Events" FromRole="EventMember" ToRole="Event" />
+    <NavigationProperty Name="Team" Relationship="HackaDbModel.FK_EventTeams_Teams" FromRole="EventMember" ToRole="Team" />
+    <NavigationProperty Name="User" Relationship="HackaDbModel.FK_EventUsersTeams_Users" FromRole="EventMember" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Event">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="CreaterUserId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Summary" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="Text" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Address" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="XMapPath" Type="Double" />
+    <Property Name="YMapPath" Type="Double" />
+    <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EventDate" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="City" Relationship="HackaDbModel.FK_Events_Cities" FromRole="Event" ToRole="City" />
+    <NavigationProperty Name="EventComments" Relationship="HackaDbModel.FK_EventComments_Events" FromRole="Event" ToRole="EventComment" />
+    <NavigationProperty Name="EventLikes" Relationship="HackaDbModel.FK_EventLikes_Events" FromRole="Event" ToRole="EventLike" />
+    <NavigationProperty Name="EventMembers" Relationship="HackaDbModel.FK_EventTeams_Events" FromRole="Event" ToRole="EventMember" />
+    <NavigationProperty Name="User" Relationship="HackaDbModel.FK_Events_Users" FromRole="Event" ToRole="User" />
+    <NavigationProperty Name="EventSponsors" Relationship="HackaDbModel.FK_EventSponsors_Events" FromRole="Event" ToRole="EventSponsor" />
+    <NavigationProperty Name="Galleries" Relationship="HackaDbModel.FK_Gallery_Events" FromRole="Event" ToRole="Gallery" />
+    <NavigationProperty Name="News" Relationship="HackaDbModel.FK_News_Events" FromRole="Event" ToRole="News" />
+  </EntityType>
+  <EntityType Name="EventSponsor">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" Nullable="false" />
+    <Property Name="SponsorName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SponsorWebsite" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Picture" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Sort" Type="Byte" />
+    <NavigationProperty Name="Event" Relationship="HackaDbModel.FK_EventSponsors_Events" FromRole="EventSponsor" ToRole="Event" />
+  </EntityType>
+  <EntityType Name="Gallery">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" />
+    <Property Name="PicturePath" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Title" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Event" Relationship="HackaDbModel.FK_Gallery_Events" FromRole="Gallery" ToRole="Event" />
+  </EntityType>
+  <EntityType Name="News">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EventId" Type="Int32" />
+    <Property Name="WriterUserId" Type="Int32" Nullable="false" />
+    <Property Name="Title" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Text" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Picture" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="WriteDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="KeywordsTag" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="DescriptionTag" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+    <Property Name="Url" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Event" Relationship="HackaDbModel.FK_News_Events" FromRole="News" ToRole="Event" />
+    <NavigationProperty Name="User" Relationship="HackaDbModel.FK_News_Users" FromRole="News" ToRole="User" />
+    <NavigationProperty Name="NewsComments" Relationship="HackaDbModel.FK_NewsComments_News" FromRole="News" ToRole="NewsComment" />
+  </EntityType>
+  <EntityType Name="NewsComment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NewsId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" />
+    <Property Name="AnswerToCommentId" Type="Int32" />
+    <Property Name="Text" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+    <Property Name="FullName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsConfirmed" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="News" Relationship="HackaDbModel.FK_NewsComments_News" FromRole="NewsComment" ToRole="News" />
+    <NavigationProperty Name="NewsComments1" Relationship="HackaDbModel.FK_NewsComments_NewsComments" FromRole="NewsComment" ToRole="NewsComment1" />
+    <NavigationProperty Name="NewsComment1" Relationship="HackaDbModel.FK_NewsComments_NewsComments" FromRole="NewsComment1" ToRole="NewsComment" />
+    <NavigationProperty Name="User" Relationship="HackaDbModel.FK_NewsComments_Users" FromRole="NewsComment" ToRole="User" />
+  </EntityType>
+  <EntityType Name="Setting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ContactUsPageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="AboutUsPageText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="WebsiteTitle" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="WebsiteFooter" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SmtpEmailServer" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailPassword" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="EmailSenderName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="Team">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CityId" Type="Int32" Nullable="false" />
+    <Property Name="TeamName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="City" Relationship="HackaDbModel.FK_Teams_Cities" FromRole="Team" ToRole="City" />
+    <NavigationProperty Name="EventMembers" Relationship="HackaDbModel.FK_EventTeams_Teams" FromRole="Team" ToRole="EventMember" />
+    <NavigationProperty Name="TeamUsers" Relationship="HackaDbModel.FK_TeamUsers_Teams" FromRole="Team" ToRole="TeamUser" />
+  </EntityType>
+  <EntityType Name="TeamUser">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="TeamId" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="Int32" Nullable="false" />
+    <Property Name="Position" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Team" Relationship="HackaDbModel.FK_TeamUsers_Teams" FromRole="TeamUser" ToRole="Team" />
+    <NavigationProperty Name="User" Relationship="HackaDbModel.FK_TeamUsers_Users" FromRole="TeamUser" ToRole="User" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FullName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Mobile" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Gender" Type="Boolean" />
+    <Property Name="Picture" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Type" Type="Byte" Nullable="false" />
+    <Property Name="Twitter" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Facebook" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Github" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+    <NavigationProperty Name="CityOrganizers" Relationship="HackaDbModel.FK_EventOrganizers_Users" FromRole="User" ToRole="CityOrganizer" />
+    <NavigationProperty Name="EventComments" Relationship="HackaDbModel.FK_EventComments_Users" FromRole="User" ToRole="EventComment" />
+    <NavigationProperty Name="EventLikes" Relationship="HackaDbModel.FK_EventLikes_Users" FromRole="User" ToRole="EventLike" />
+    <NavigationProperty Name="EventMembers" Relationship="HackaDbModel.FK_EventUsersTeams_Users" FromRole="User" ToRole="EventMember" />
+    <NavigationProperty Name="Events" Relationship="HackaDbModel.FK_Events_Users" FromRole="User" ToRole="Event" />
+    <NavigationProperty Name="News" Relationship="HackaDbModel.FK_News_Users" FromRole="User" ToRole="News" />
+    <NavigationProperty Name="NewsComments" Relationship="HackaDbModel.FK_NewsComments_Users" FromRole="User" ToRole="NewsComment" />
+    <NavigationProperty Name="TeamUsers" Relationship="HackaDbModel.FK_TeamUsers_Users" FromRole="User" ToRole="TeamUser" />
+  </EntityType>
+  <Association Name="FK_CityOrganizers_Cities">
+    <End Type="HackaDbModel.City" Role="City" Multiplicity="1" />
+    <End Type="HackaDbModel.CityOrganizer" Role="CityOrganizer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CityOrganizer">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_CitySponsors_Cities">
+    <End Type="HackaDbModel.City" Role="City" Multiplicity="1" />
+    <End Type="HackaDbModel.CitySponsor" Role="CitySponsor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CitySponsor">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_Cities">
+    <End Type="HackaDbModel.City" Role="City" Multiplicity="1" />
+    <End Type="HackaDbModel.Event" Role="Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Teams_Cities">
+    <End Type="HackaDbModel.City" Role="City" Multiplicity="1" />
+    <End Type="HackaDbModel.Team" Role="Team" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="City">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Team">
+        <PropertyRef Name="CityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventOrganizers_Users">
+    <End Type="HackaDbModel.User" Role="User" Multiplicity="1" />
+    <End Type="HackaDbModel.CityOrganizer" Role="CityOrganizer" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="CityOrganizer">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventComments_EventComments">
+    <End Type="HackaDbModel.EventComment" Role="EventComment" Multiplicity="0..1" />
+    <End Type="HackaDbModel.EventComment" Role="EventComment1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EventComment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventComment1">
+        <PropertyRef Name="AnswerToCommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventComments_Events">
+    <End Type="HackaDbModel.Event" Role="Event" Multiplicity="1" />
+    <End Type="HackaDbModel.EventComment" Role="EventComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventComment">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventComments_Users">
+    <End Type="HackaDbModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="HackaDbModel.EventComment" Role="EventComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventComment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventLikes_Events">
+    <End Type="HackaDbModel.Event" Role="Event" Multiplicity="1" />
+    <End Type="HackaDbModel.EventLike" Role="EventLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventLike">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventLikes_Users">
+    <End Type="HackaDbModel.User" Role="User" Multiplicity="1" />
+    <End Type="HackaDbModel.EventLike" Role="EventLike" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventLike">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventTeams_Events">
+    <End Type="HackaDbModel.Event" Role="Event" Multiplicity="1" />
+    <End Type="HackaDbModel.EventMember" Role="EventMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventMember">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventTeams_Teams">
+    <End Type="HackaDbModel.Team" Role="Team" Multiplicity="0..1" />
+    <End Type="HackaDbModel.EventMember" Role="EventMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventMember">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventUsersTeams_Users">
+    <End Type="HackaDbModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="HackaDbModel.EventMember" Role="EventMember" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventMember">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Events_Users">
+    <End Type="HackaDbModel.User" Role="User" Multiplicity="1" />
+    <End Type="HackaDbModel.Event" Role="Event" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Event">
+        <PropertyRef Name="CreaterUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EventSponsors_Events">
+    <End Type="HackaDbModel.Event" Role="Event" Multiplicity="1" />
+    <End Type="HackaDbModel.EventSponsor" Role="EventSponsor" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="EventSponsor">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Gallery_Events">
+    <End Type="HackaDbModel.Event" Role="Event" Multiplicity="0..1" />
+    <End Type="HackaDbModel.Gallery" Role="Gallery" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Gallery">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Events">
+    <End Type="HackaDbModel.Event" Role="Event" Multiplicity="0..1" />
+    <End Type="HackaDbModel.News" Role="News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Event">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="EventId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_News_Users">
+    <End Type="HackaDbModel.User" Role="User" Multiplicity="1" />
+    <End Type="HackaDbModel.News" Role="News" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="News">
+        <PropertyRef Name="WriterUserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsComments_News">
+    <End Type="HackaDbModel.News" Role="News" Multiplicity="1" />
+    <End Type="HackaDbModel.NewsComment" Role="NewsComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="News">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NewsComment">
+        <PropertyRef Name="NewsId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsComments_NewsComments">
+    <End Type="HackaDbModel.NewsComment" Role="NewsComment" Multiplicity="0..1" />
+    <End Type="HackaDbModel.NewsComment" Role="NewsComment1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NewsComment">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NewsComment1">
+        <PropertyRef Name="AnswerToCommentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_NewsComments_Users">
+    <End Type="HackaDbModel.User" Role="User" Multiplicity="0..1" />
+    <End Type="HackaDbModel.NewsComment" Role="NewsComment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="NewsComment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamUsers_Teams">
+    <End Type="HackaDbModel.Team" Role="Team" Multiplicity="1" />
+    <End Type="HackaDbModel.TeamUser" Role="TeamUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Team">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TeamUser">
+        <PropertyRef Name="TeamId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_TeamUsers_Users">
+    <End Type="HackaDbModel.User" Role="User" Multiplicity="1" />
+    <End Type="HackaDbModel.TeamUser" Role="TeamUser" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="TeamUser">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

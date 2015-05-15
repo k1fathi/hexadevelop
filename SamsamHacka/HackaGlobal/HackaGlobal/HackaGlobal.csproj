@@ -40,6 +40,15 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Practices.ServiceLocation">
+      <HintPath>..\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Practices.Unity.Configuration">
+      <HintPath>..\packages\Unity.2.1.505.2\lib\NET35\Microsoft.Practices.Unity.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -47,6 +56,8 @@
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.2\lib\net45\System.Net.Http.Formatting.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -104,6 +115,9 @@
     <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <Private>True</Private>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.2\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityDependencyResolver.Lib">
+      <HintPath>..\packages\UnityDependencyResolver.1.0.0\lib\net40\UnityDependencyResolver.Lib.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <Private>True</Private>
@@ -171,18 +185,128 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="BootStrapper.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CitiesController.cs" />
+    <Compile Include="Controllers\CityOrganizersController.cs" />
+    <Compile Include="Controllers\CitySponsorsController.cs" />
+    <Compile Include="Controllers\EventCommentsController.cs" />
+    <Compile Include="Controllers\EventLikesController.cs" />
+    <Compile Include="Controllers\EventMembersController.cs" />
+    <Compile Include="Controllers\EventsController.cs" />
+    <Compile Include="Controllers\EventSponsorsController.cs" />
+    <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\NewsCommentsController.cs" />
+    <Compile Include="Controllers\NewsController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Controllers\TeamsController.cs" />
+    <Compile Include="Controllers\TeamUsersController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
+    <Compile Include="DependencyResolution\UnityResolver.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\City.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CityOrganizer.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CitySponsor.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Event.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EventComment.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EventLike.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EventMember.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\EventSponsor.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Gallery.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HackaDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HackaDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HackaDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\HackaDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HackaDbModel.edmx</DependentUpon>
+    </Compile>
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\Interfaces\ICitiesRepository.cs" />
+    <Compile Include="Models\Interfaces\ICityOrganizersRepository.cs" />
+    <Compile Include="Models\Interfaces\ICitySponsorsRepository.cs" />
+    <Compile Include="Models\Interfaces\IEventCommentsRepository.cs" />
+    <Compile Include="Models\Interfaces\IEventLikesRepository.cs" />
+    <Compile Include="Models\Interfaces\IEventMembersRepository.cs" />
+    <Compile Include="Models\Interfaces\IEventSponsorsRepository.cs" />
+    <Compile Include="Models\Interfaces\IEventsRepository.cs" />
+    <Compile Include="Models\Interfaces\IGalleryRepository.cs" />
+    <Compile Include="Models\Interfaces\INewsCommentsRepository.cs" />
+    <Compile Include="Models\Interfaces\INewsRepository.cs" />
+    <Compile Include="Models\Interfaces\ISettingRepository.cs" />
+    <Compile Include="Models\Interfaces\ITeamsRepository.cs" />
+    <Compile Include="Models\Interfaces\ITeamUsersRepository.cs" />
+    <Compile Include="Models\Interfaces\IUsersRepository.cs" />
+    <Compile Include="Models\IUnitOfWork.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MyDbContext.cs" />
+    <Compile Include="Models\News.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\NewsComment.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Repositories\CitiesRepository.cs" />
+    <Compile Include="Models\Repositories\CityOrganizersRepository.cs" />
+    <Compile Include="Models\Repositories\CitySponsorsRepository.cs" />
+    <Compile Include="Models\Repositories\EventCommentsRepository.cs" />
+    <Compile Include="Models\Repositories\EventLikesRepository.cs" />
+    <Compile Include="Models\Repositories\EventMembersRepository.cs" />
+    <Compile Include="Models\Repositories\EventSponsorsRepository.cs" />
+    <Compile Include="Models\Repositories\EventsRepository.cs" />
+    <Compile Include="Models\Repositories\GalleryRepository.cs" />
+    <Compile Include="Models\Repositories\NewsCommentsRepository.cs" />
+    <Compile Include="Models\Repositories\NewsRepository.cs" />
+    <Compile Include="Models\Repositories\SettingRepository.cs" />
+    <Compile Include="Models\Repositories\TeamsRepository.cs" />
+    <Compile Include="Models\Repositories\TeamUsersRepository.cs" />
+    <Compile Include="Models\Repositories\UsersRepository.cs" />
+    <Compile Include="Models\Setting.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Team.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\TeamUser.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>HackaDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ValueController.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Utilities\Utility.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -193,6 +317,23 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <EntityDeploy Include="Models\HackaDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HackaDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\HackaDbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HackaDbModel.edmx</DependentUpon>
+      <LastGenOutput>HackaDbModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\HackaDbModel.edmx.diagram">
+      <DependentUpon>HackaDbModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\HackaDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>HackaDbModel.edmx</DependentUpon>
+      <LastGenOutput>HackaDbModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -240,6 +381,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Unity.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -250,6 +392,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
